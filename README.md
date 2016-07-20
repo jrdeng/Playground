@@ -1,26 +1,13 @@
-Playground
-==========
-
-play github.
 
 
-# H1 #
+# Splitting a subfolder out into a new repository
 
-1. 那啥
+## https://help.github.com/articles/splitting-a-subfolder-out-into-a-new-repository/
 
-  zzzzzz
+  git clone https://github.com/USERNAME/REPOSITORY-NAME
 
-    code here
-
-2. 这啥
-3. ...
-
-
-## H2 ##
-
-普通段落
-
-
-  缩进1
-
-    缩进2
+  git filter-branch --prune-empty --subdirectory-filter FOLDER-NAME 
+  
+  git remote set-url origin https://github.com/USERNAME/NEW-REPOSITORY-NAME.git
+  
+  git push -u origin BRANCH-NAME

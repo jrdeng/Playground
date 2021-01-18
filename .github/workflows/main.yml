@@ -20,20 +20,11 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world! -- trigger by issues
 
       # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: Get issues
         run: |
-          pwd
-          cat README.md
-          echo ==========================
-          echo secrets.GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          echo -----------------
-          env
-          echo ----------------------
+          curl --request GET \
+          --url https://api.github.com/repos/${{ github.repository }}/issues \
+          --header 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+          --header 'Accept: application/vnd.github.v3+json'

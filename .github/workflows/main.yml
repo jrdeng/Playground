@@ -56,6 +56,9 @@ jobs:
           git init
           git add .
           git commit -m "Auto Gen by Github Actions"
+          echo ----------------------
+          echo url: "https://${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}"
+          echo ----------------------
           git push --force "https://${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}" master:master
           cd ../..
           

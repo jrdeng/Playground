@@ -28,8 +28,31 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: jrdeng/blog-hugo
+          path: blog-hugo
           submodules: recursive
 
       - name: Generate blog
         # TODO: the env $GITHUB_REPOSITORY contains the owner name...remove it...
-        run: ./generate_and_deploy.py -o $GITHUB_ACTOR -r Playground -t ${{ secrets.GITHUB_TOKEN }} -g /usr/local/bin/hugo
+        # TODO: SSH checkout and checkin is not allowed? use https push? (step  "Force push current repo"...
+        run: |
+          cd blog-hugo
+          ./generate_and_deploy.py -o $GITHUB_ACTOR -r Playground -t ${{ secrets.GITHUB_TOKEN }} -g /usr/local/bin/hugo -d
+          cd ..
+      
+      - name: Checkout current repo(the blog repo)
+        uses: actions/checkout@v2
+        with:
+          path: current-repo
+
+      - name: Force push current repo
+        # TODO: ENV? user name and email...
+        run: |
+          cd blog-hugo/public/
+          git config --global user.name "Junren Deng"
+          git config --global user.email "junren.deng@gmail.com"
+          git init
+          git add .
+          git commit -m "Auto Gen by Github Actions"
+          git push --force "https://${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY" master:master
+          cd ../..
+          

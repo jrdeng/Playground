@@ -46,13 +46,16 @@ jobs:
 
       - name: Force push current repo
         # TODO: ENV? user name and email...
+        # TODO: how to push via https???
+        # remember copy the .github/workflows to the new repo before force pushing
         run: |
           cd blog-hugo/public/
+          cp ../../current-repo/.github . -a
           git config --global user.name "Junren Deng"
           git config --global user.email "junren.deng@gmail.com"
           git init
           git add .
           git commit -m "Auto Gen by Github Actions"
-          git push --force "https://${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY" master:master
+          git push --force "https://${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}" master:master
           cd ../..
           

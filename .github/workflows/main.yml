@@ -31,7 +31,8 @@ jobs:
           --header 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
           --header 'accept: application/vnd.github.v3+json' \
           --header 'per_page: 100' \
-          --header 'page: 1'
+          --header 'page: 1' \
+          --output 1.txt
       - name: Get issues 100x2
         run: |
           echo pwd: `pwd`
@@ -41,4 +42,8 @@ jobs:
           --header 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
           --header 'accept: application/vnd.github.v3+json' \
           --header 'per_page: 100' \
-          --header 'page: 2'
+          --header 'page: 2' \
+          --output 2.txt
+      - name: Diff
+        run: diff 1.txt 2.txt
+        

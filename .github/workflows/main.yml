@@ -20,11 +20,17 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - name: Checkout blog-hugo
+        uses: actions/checkout@v2
+        with:
+          repository: jrdeng/blog-hugo
+          submodules: recursive
 
       # Runs a set of commands using the runners shell
       - name: Get issues 100x1
         run: |
           echo pwd: `pwd`
+          ls
           echo -------------------------------------
           curl --request GET \
           --url https://api.github.com/repos/${{ github.repository }}/issues \
@@ -36,6 +42,7 @@ jobs:
       - name: Get issues 100x2
         run: |
           echo pwd: `pwd`
+          ls
           echo -------------------------------------
           curl --request GET \
           --url https://api.github.com/repos/${{ github.repository }}/issues \
@@ -45,5 +52,7 @@ jobs:
           --header 'page: 2' \
           --output 2.txt
       - name: Diff
-        run: diff 1.txt 2.txt
+        run: |
+          ls
+          diff 1.txt 2.txt
         

@@ -48,7 +48,8 @@ jobs:
         # NOTE: use master:/doc  as pages,  maybe try another branch?
         run: |
           cd current-repo
-          rm -rf docs/*
+          rm -rf docs
+          mkdir docs
           cp ../blog-hugo/public/* docs/ -a
           git config --global user.name "Junren Deng"
           git config --global user.email "junren.deng@gmail.com"

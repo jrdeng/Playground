@@ -7,17 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
 
-    <title>t1 | 无名的旅人</title>
-    <meta property="og:title" content="t1 - 无名的旅人">
+    <title>fatal error: &#39;asm/types.h&#39; file not found | 无名的旅人</title>
+    <meta property="og:title" content="fatal error: &#39;asm/types.h&#39; file not found - 无名的旅人">
     <meta property="og:type" content="article">
         
-    <meta property="article:published_time" content='2018-08-25T00:07:34&#43;08:00'>
+    <meta property="article:published_time" content='2019-03-15T17:27:44&#43;08:00'>
         
         
-    <meta property="article:modified_time" content='2018-08-25T00:07:34&#43;08:00'>
+    <meta property="article:modified_time" content='2019-03-15T17:27:44&#43;08:00'>
         
     <meta name="Keywords" content="Python,github,hugo,blog">
-    <meta name="description" content="t1">
+    <meta name="description" content="fatal error: &#39;asm/types.h&#39; file not found">
         
     <meta name="author" content="jrdeng">
     <meta property="og:url" content="https://jrdeng.github.io/post/6/">
@@ -72,20 +72,34 @@
     
     <article class="post">
         <header>
-            <h1 class="post-title">t1</h1>
+            <h1 class="post-title">fatal error: &#39;asm/types.h&#39; file not found</h1>
         </header>
         <date class="post-meta meta-date">
-            2018年8月25日
+            2019年3月15日
         </date>
         
         
         
         <div class="post-content">
-            <p>xxxx</p>
+            <p>用cmake+ndk的时候遇到一个错误：</p>
+<pre><code>fatal error: 'asm/types.h' file not found
+</code></pre><p>用的是ndk自带的 <code>build/cmake/android.toolchain.cmake</code>。</p>
+<p>看现象是include路径没包含进来。</p>
+<p>解决方案，修改 <code>build/cmake/android.toolchain.cmake</code>，增加：</p>
+<pre><code>if (${ANDROID_ABI} STREQUAL &quot;x86_64&quot;)
+    include_directories(${ANDROID_SYSROOT}/usr/include/x86_64-linux-android)
+elseif (${ANDROID_ABI} STREQUAL &quot;x86&quot;)
+    include_directories(${ANDROID_SYSROOT}/usr/include/i686-linux-android)
+elseif (${ANDROID_ABI} STREQUAL &quot;arm64-v8a&quot;)
+    include_directories(${ANDROID_SYSROOT}/usr/include/aarch64-linux-android)
+elseif (${ANDROID_ABI} STREQUAL &quot;armeabi-v7a&quot;)
+    include_directories(${ANDROID_SYSROOT}/usr/include/arm-linux-androideabi)
+endif()
+</code></pre><p>搞定。</p>
 <hr style="width: 100%"/>
-<h1 style="font-size: 1.5em;color:#555;font-weight: bold;">Comments: (on <a href="https://github.com/jrdeng/Playground/issues/6">github issue)</a></h1>
+<h1 style="font-size: 1.5em;color:#555;font-weight: bold;">Comments: (on <a href="https://github.com/jrdeng/jrdeng.github.io/issues/6">github issue)</a></h1>
 <script src="https://utteranc.es/client.js"
-        repo="jrdeng/Playground"
+        repo="jrdeng/jrdeng.github.io"
         issue-number="6"
         theme="github-light"
         crossorigin="anonymous"
@@ -103,13 +117,15 @@
     <h2>See Also</h2>
     <ul class="listing">
         
-        <li><a href="/post/5/">测试issue</a></li>
+        <li><a href="/post/4/">cannot locate symbol &#34;_ZSt18_Rb_tree_incrementPSt18_Rb_tree_node_base&#34;</a></li>
         
-        <li><a href="/post/4/">hello world!</a></li>
+        <li><a href="/post/5/">blog-hugo的bug导致生成静态页面失败</a></li>
         
-        <li><a href="/post/3/">this is an issue</a></li>
+        <li><a href="/post/3/">测试局域网的可用（外出）端口</a></li>
         
-        <li><a href="/archives/">归档</a></li>
+        <li><a href="/post/1/">用github的issue做记录并生成静态博客</a></li>
+        
+        <li><a href="/about/">关于</a></li>
         
     </ul>
 </div>
@@ -117,7 +133,13 @@
 
         <div class="post-meta meta-tags">
             
-            没有标签
+            <ul class="clearfix">
+                
+                <li><a href='/tags/android'>Android</a></li>
+                
+                <li><a href='/tags/%E6%8A%80%E6%9C%AF'>技术</a></li>
+                
+            </ul>
             
         </div>
     </article>
@@ -184,43 +206,39 @@
 <ul class="widget-list">
     
     <li>
-        <a href="https://jrdeng.github.io/post/16/" title="151515151515">151515151515</a>
+        <a href="https://jrdeng.github.io/post/10/" title="引进评论系统：utterances">引进评论系统：utterances</a>
     </li>
     
     <li>
-        <a href="https://jrdeng.github.io/post/14/" title="iiiiiirfd">iiiiiirfd</a>
+        <a href="https://jrdeng.github.io/post/9/" title="KVM/libvirt forwarding ports to guest via iptables">KVM/libvirt forwarding ports to guest via iptables</a>
     </li>
     
     <li>
-        <a href="https://jrdeng.github.io/post/13/" title="快回复财富">快回复财富</a>
+        <a href="https://jrdeng.github.io/post/8/" title="Lua 5.4.x CMakeLists.txt">Lua 5.4.x CMakeLists.txt</a>
     </li>
     
     <li>
-        <a href="https://jrdeng.github.io/post/12/" title="吃饭后好烦好烦">吃饭后好烦好烦</a>
+        <a href="https://jrdeng.github.io/post/7/" title="解决Windows不能远程登录ubuntu18.04.2（xRDP）的问题">解决Windows不能远程登录ubuntu18.04.2（xRDP）的问题</a>
     </li>
     
     <li>
-        <a href="https://jrdeng.github.io/post/11/" title="复古风会发光">复古风会发光</a>
+        <a href="https://jrdeng.github.io/post/6/" title="fatal error: &#39;asm/types.h&#39; file not found">fatal error: &#39;asm/types.h&#39; file not found</a>
     </li>
     
     <li>
-        <a href="https://jrdeng.github.io/post/10/" title="f">f</a>
+        <a href="https://jrdeng.github.io/post/5/" title="blog-hugo的bug导致生成静态页面失败">blog-hugo的bug导致生成静态页面失败</a>
     </li>
     
     <li>
-        <a href="https://jrdeng.github.io/post/9/" title="t4oooo">t4oooo</a>
+        <a href="https://jrdeng.github.io/post/4/" title="cannot locate symbol &#34;_ZSt18_Rb_tree_incrementPSt18_Rb_tree_node_base&#34;">cannot locate symbol &#34;_ZSt18_Rb_tree_incrementPSt18_Rb_tree_node_base&#34;</a>
     </li>
     
     <li>
-        <a href="https://jrdeng.github.io/post/8/" title="t3">t3</a>
+        <a href="https://jrdeng.github.io/post/3/" title="测试局域网的可用（外出）端口">测试局域网的可用（外出）端口</a>
     </li>
     
     <li>
-        <a href="https://jrdeng.github.io/post/7/" title="t2">t2</a>
-    </li>
-    
-    <li>
-        <a href="https://jrdeng.github.io/post/6/" title="t1">t1</a>
+        <a href="https://jrdeng.github.io/post/1/" title="用github的issue做记录并生成静态博客">用github的issue做记录并生成静态博客</a>
     </li>
     
 </ul>
@@ -239,11 +257,27 @@
         <h3 class="widget-title"><a href='/tags/'>标签</a></h3>
 <div class="tagcloud">
     
-    <a href="https://jrdeng.github.io/tags/just_a_label/">just_a_label</a>
+    <a href="https://jrdeng.github.io/tags/android/">Android</a>
     
-    <a href="https://jrdeng.github.io/tags/this_is_a_tag/">this_is_a_tag</a>
+    <a href="https://jrdeng.github.io/tags/graphql/">GraphQL</a>
     
-    <a href="https://jrdeng.github.io/tags/wontfix/">wontfix</a>
+    <a href="https://jrdeng.github.io/tags/hugo/">hugo</a>
+    
+    <a href="https://jrdeng.github.io/tags/iptables/">iptables</a>
+    
+    <a href="https://jrdeng.github.io/tags/kvm/">KVM</a>
+    
+    <a href="https://jrdeng.github.io/tags/lua/">Lua</a>
+    
+    <a href="https://jrdeng.github.io/tags/python/">Python</a>
+    
+    <a href="https://jrdeng.github.io/tags/ubuntu/">Ubuntu</a>
+    
+    <a href="https://jrdeng.github.io/tags/xrdp/">xRDP</a>
+    
+    <a href="https://jrdeng.github.io/tags/%E6%8A%80%E6%9C%AF/">技术</a>
+    
+    <a href="https://jrdeng.github.io/tags/%E6%B5%8B%E8%AF%95%E6%A0%87%E7%AD%BE/">测试标签</a>
     
 </div>
     </section>

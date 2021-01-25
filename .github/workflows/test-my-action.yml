@@ -1,6 +1,8 @@
 name: test query-issues-action
 
-on: [push]
+on:
+  push:
+  workflow_dispatch:
 
 jobs:
   test-query-issues-action:
@@ -12,10 +14,10 @@ jobs:
         uses: jrdeng/query-issues-action@master
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          repo: ${{ github.repository }}
+          repo: jrdeng/jrdeng.github.io
           author: jrdeng
 
       - name: get the output
         run: |
-          - echo "issue_list: ${{ steps.my-action.outputs.issue_list }}"
-          - echo "error_msg: ${{ steps.my-action.outputs.error_msg }}"
+          - echo "issue_list= ${{ steps.my-action.outputs.issue_list }}"
+          - echo "error_msg= ${{ steps.my-action.outputs.error_msg }}"

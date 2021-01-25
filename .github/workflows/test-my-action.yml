@@ -9,10 +9,10 @@ jobs:
     steps:
     - name: use action
       id: my-action
-      uses: jrdeng/query-issues-action@9de3815
+      uses: jrdeng/query-issues-action@f48e3d8
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        repo: $GITHUB_REPOSITORY
+        repo: "$GITHUB_REPOSITORY"
         author: jrdeng
 
     # Use the output from the step

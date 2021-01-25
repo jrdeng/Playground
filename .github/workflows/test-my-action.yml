@@ -18,6 +18,4 @@ jobs:
           author: jrdeng
 
       - name: get the output
-        run: |
-          - echo "issue_list= ${{ steps.my-action.outputs.issue_list }}"
-          - echo "error_msg= ${{ steps.my-action.outputs.error_msg }}"
+        run: echo "issue_list= ${{ steps.my-action.outputs.issue_list }}"

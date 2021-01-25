@@ -7,17 +7,19 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to test query-issues-action
     steps:
-    - name: use action
-      id: my-action
-      uses: jrdeng/query-issues-action@master
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        repo: $GITHUB_REPOSITORY
-        author: jrdeng
+      - run: echo "GITHUB_REPOSITORY=$GITHUB_REPOSITORY"
+      - run: echo GITHUB_REPOSITORY=$GITHUB_REPOSITORY
+      - run: echo "GITHUB_REPOSITORY=${{GITHUB_REPOSITORY}}"
 
-    - name: get the output
-      run: |
-        - echo "GITHUB_REPOSITORY=$GITHUB_REPOSITORY"
-        - echo "issue_list: ${{ steps.my-action.outputs.issue_list }}"
-        - echo "error_msg: ${{ steps.my-action.outputs.error_msg }}"
-        - echo "Bye!"
+      - name: use action
+        id: my-action
+        uses: jrdeng/query-issues-action@master
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repo: $GITHUB_REPOSITORY
+          author: jrdeng
+
+      - name: get the output
+        run: |
+          - echo "issue_list: ${{ steps.my-action.outputs.issue_list }}"
+          - echo "error_msg: ${{ steps.my-action.outputs.error_msg }}"

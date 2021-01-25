@@ -17,9 +17,15 @@ jobs:
           repo: jrdeng/jrdeng.github.io
           author: jrdeng
 
+      - name: checkout
+        uses: actions/checkout@v2
+
       - name: store output
         run: |
-          echo ${{ steps.my-action.outputs.issue_list }} >> issues.json
+          echo ${{ steps.my-action.outputs.issue_list }} > issues.json
           pwd
-          cat issues.json
+          ls
+          git add .
+          git commit -m "update issues.json"
+          git push
           

@@ -17,5 +17,9 @@ jobs:
           repo: jrdeng/jrdeng.github.io
           author: jrdeng
 
-      - name: get the output
-        run: echo issue_list=${{ steps.my-action.outputs.issue_list }}
+      - name: store output
+        run: |
+          echo ${{ steps.my-action.outputs.issue_list }} >> issues.json
+          pwd
+          cat issues.json
+          

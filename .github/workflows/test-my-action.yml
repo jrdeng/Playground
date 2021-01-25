@@ -1,3 +1,5 @@
+name: test query-issues-action
+
 on: [push]
 
 jobs:

@@ -22,7 +22,8 @@ jobs:
 
       - name: store output
         run: |
-          echo "${{ steps.my-action.outputs.issue_list }}" > issues.json
+          echo  "${{ steps.my-action.outputs.error_msg }}"
+          echo ${{ steps.my-action.outputs.issue_list }} > issues.json
           pwd
           ls
           git config --global user.email "junren.deng@gmail.com"

@@ -9,7 +9,6 @@ jobs:
     steps:
       - run: echo "GITHUB_REPOSITORY=$GITHUB_REPOSITORY"
       - run: echo GITHUB_REPOSITORY=$GITHUB_REPOSITORY
-      - run: echo "GITHUB_REPOSITORY=${{GITHUB_REPOSITORY}}"
 
       - name: use action
         id: my-action

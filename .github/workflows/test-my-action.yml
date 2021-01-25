@@ -3,7 +3,7 @@ name: test query-issues-action
 on: [push]
 
 jobs:
-  test-my-query-issues-action:
+  test-query-issues-action:
     runs-on: ubuntu-latest
     name: A job to test query-issues-action
     steps:
@@ -15,8 +15,8 @@ jobs:
         repo: "$GITHUB_REPOSITORY"
         author: jrdeng
 
-    # Use the output from the step
-    - name: Get the output
+    - name: get the output
       run: |
         - echo "issue_list: ${{ steps.my-action.outputs.issue_list }}"
         - echo "error_msg: ${{ steps.my-action.outputs.error_msg }}"
+        - echo "Bye!"

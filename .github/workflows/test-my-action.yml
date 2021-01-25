@@ -18,4 +18,4 @@ jobs:
           author: jrdeng
 
       - name: get the output
-        run: echo "issue_list= ${{ steps.my-action.outputs.issue_list }}"
+        run: echo issue_list=${{ steps.my-action.outputs.issue_list }}

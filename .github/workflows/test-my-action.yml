@@ -7,15 +7,12 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to test query-issues-action
     steps:
-      - run: echo "GITHUB_REPOSITORY=$GITHUB_REPOSITORY"
-      - run: echo GITHUB_REPOSITORY=$GITHUB_REPOSITORY
-
       - name: use action
         id: my-action
         uses: jrdeng/query-issues-action@master
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          repo: $GITHUB_REPOSITORY
+          repo: ${{ github.repository }}
           author: jrdeng
 
       - name: get the output

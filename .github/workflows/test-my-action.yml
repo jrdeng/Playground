@@ -16,14 +16,14 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           repo: jrdeng/jrdeng.github.io
           author: jrdeng
+          output_json: /issues.json
 
       - name: checkout
         uses: actions/checkout@v2
 
-      - name: store output
+      - name: use action output file
         run: |
-          echo  "${{ steps.my-action.outputs.error_msg }}"
-          echo ${{ steps.my-action.outputs.issue_list }} > issues.json
+          copy /issues.json .
           pwd
           ls
           git config --global user.email "junren.deng@gmail.com"

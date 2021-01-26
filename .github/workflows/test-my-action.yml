@@ -23,7 +23,7 @@ jobs:
 
       - name: use action output file
         run: |
-          copy /issues.json .
+          cp /issues.json .
           pwd
           ls
           git config --global user.email "junren.deng@gmail.com"

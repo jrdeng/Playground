@@ -9,6 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to test query-issues-action
     steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
       - name: use action
         id: my-action
         uses: jrdeng/query-issues-action@master
@@ -16,14 +19,10 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           repo: jrdeng/jrdeng.github.io
           author: jrdeng
-          output_json: /issues.json
-
-      - name: checkout
-        uses: actions/checkout@v2
+          output_json: ./issues.json
 
       - name: use action output file
         run: |
-          cp /issues.json .
           pwd
           ls
           git config --global user.email "junren.deng@gmail.com"
